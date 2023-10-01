@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouTube Comment Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to external CSS file -->
+    <script src="popup.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../Libs/chart.min.js"></script>
+  </head>
+
+  <body>
+    <h1>YouTube Comment Analyzer</h1>
+    <!-- Add tabs -->
+    <div>
+      <button class="tab-button active" data-tab="dashboard">Dashboard</button>
+      <button class="tab-button" data-tab="user-engagement">
+        User Engagement
+      </button>
+      <button class="tab-button" data-tab="controversial-topics">
+        Controversial Topics
+      </button>
+      <button class="tab-button" data-tab="user-requirements">
+        User Requirements
+      </button>
+      <button class="tab-button" data-tab="keyword-analyzer">
+        Keyword Analyzer
+      </button>
+    </div>
+
+    <!-- Add tab contents -->
+    <div class="tab-content active" id="dashboard-content">
+      Dashboard content goes here.
+    </div>
+    <div class="tab-content" id="user-engagement-content">
+      User Engagement content goes here.
+    </div>
+    <div class="tab-content" id="controversial-topics-content">
+      <button id="getControversialTopic">Get Controversials Topics</button>
+      <p id="controversialIDDisplay">Video ID will be displayed here.</p>
+      <p id="controversialList">Controversial Topics will be displayed here.</p>
+      <canvas id="marksChart" width="400" height="200"></canvas>
+    </div>
+    <div class="tab-content" id="user-requirements-content">
+      <br />
+      <button id="getVideoIDButton">Get Requirements</button>
+      <p id="videoIDDisplay">Video ID will be displayed here.</p>
+      <p id="requestList">Requirements will be displayed here.</p>
+    </div>
+    <div class="tab-content" id="keyword-analyzer-content">
+      Keyword Analyzer content goes here.
+    </div>
+  </body>
+</html>

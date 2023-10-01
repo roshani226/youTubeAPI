@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "The YouTube Detective",
+  "version": "1.0",
+  "description": "Identify user requests in YouTube comments",
+  "icons": {
+    "16": "Assets/Icons/1.png",
+    "48": "Assets/Icons/2.png",
+    "128": "Assets/Icons/3.jpg"
+  },
+  "action": {
+    "default_popup": "PopUp/popup.html",
+    "default_icon": {
+      "16": "Assets/Icons/1.png",
+      "48": "Assets/Icons/2.png",
+      "128": "Assets/Icons/3.jpg"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*"
+      ],
+      "js": [
+        "ContentScripts/content.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "http://localhost:5000/"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["Libs/chart.min.js"],
+      "matches": ["<all_urls>"],
+      "use_dynamic_url": false
+    }
+  ]
+}

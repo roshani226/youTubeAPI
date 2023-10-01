@@ -1,0 +1,169 @@
+/* Customize the popup container size */
+body {
+  width: 650px;
+  height: 500px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+  outline: 2px solid #000000;
+}
+
+body::before {
+  content: "";
+  background-image: url("logo.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 200px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* General button styles */
+.tab-button {
+  background-color: #faa1a1;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  font-size: 10px;
+  font-weight: bold;
+  outline: 1px solid #000000;
+}
+
+/* Hover effect for buttons */
+.tab-button:hover {
+  background-color: #f93d3d;
+}
+
+/* Active tab button style */
+.tab-button.active {
+  background-color: #dc3e3e;
+}
+
+/* Hide all tab contents by default */
+.tab-content {
+  display: none;
+  padding: 10px;
+}
+
+/* Show the active tab content */
+.tab-content.active {
+  display: block;
+  margin-top: 15px;
+}
+
+/* Main heading style */
+#main-heading {
+  color: #333;
+  font-size: 24px;
+  text-align: center;
+  font-family: fantasy;
+  font-weight: bold;
+}
+
+/* Main heading style */
+h1 {
+  color: #333;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Video ID button style */
+#getVideoIDButton {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+#getControversialTopic {
+  background-color: rgb(203, 41, 41);
+  color: white; /* Text color */
+  border: none;
+  padding: 5px 5px; /* Adjust padding as needed */
+  border-radius: 20px; /* Rounded corners */
+  width: 33%;
+  cursor: pointer;
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  margin: 3px;
+}
+
+
+/* Hover effect - change background color on hover */
+#getControversialTopic:hover {
+  background-color: darkred; /* Adjust hover color as needed */
+}
+
+
+/* Add styles for the opinions container */
+#controversialList {
+margin-top: 10px;
+font-size: 14px;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+max-height: 200px; /* Set a maximum height for scroll */
+overflow-y: auto; /* Add scroll for overflowing content */
+background-color: #f0f0f0;
+}
+
+/* Style for the opinions list */
+#controversialList ul {
+list-style: none;
+padding: 0;
+}
+
+/* Style for opinions list items */
+#controversialList ul li {
+margin-bottom: 5px;
+padding-left: 20px;
+position: relative;
+}
+
+/* Style for opinions list item bullet */
+#controversialList ul li:before {
+content: "\2022"; /* Use a bullet point character as a list marker */
+position: absolute;
+left: 0;
+color: #ff6600; /* Customize the color of the list marker */
+font-weight: bold;
+}
+/* Video ID button hover effect */
+#getVideoIDButton:hover {
+  background-color: #2ecc71;
+}
+
+/* Result display style */
+#videoIDDisplay,
+#requestList,
+#controversialIDDisplay,
+controversialList {
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+/* Requirements list style */
+#requestList ul {
+  list-style-type: square;
+  margin-left: 20px;
+  padding: 1px;
+}
+
+/* Error message style */
+#requestList.error {
+  color: #ff0000;
+  font-weight: bold;
+}
