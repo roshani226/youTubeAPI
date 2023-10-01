@@ -120,6 +120,15 @@ overflow-y: auto; /* Add scroll for overflowing content */
 background-color: #f0f0f0;
 }
 
+#controversialsTopicSearch {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  left: 0;
+  margin-left: -65%;
+}
+
 /* Style for the opinions list */
 #controversialList ul {
 list-style: none;
@@ -146,10 +155,26 @@ font-weight: bold;
   background-color: #2ecc71;
 }
 
+#controversialsTopicSearchBtn {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+#controversialsTopicSearchBtn:hover {
+  background-color: #2ecc71;
+}
+
 /* Result display style */
 #videoIDDisplay,
 #requestList,
 #controversialIDDisplay,
+#controversialSearchDisplay,
 controversialList {
   margin-top: 10px;
   font-size: 10px;

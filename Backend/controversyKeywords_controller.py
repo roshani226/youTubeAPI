@@ -22,3 +22,13 @@ def controversyKeywordsPrediction(video_id):
                 print('predicted comment')
                 predicted_dict[comment] =  comment
     return predicted_dict
+
+def controversyKeywordsSearch(video_id,search):
+    predicted_dict = {}
+    comments = commentGetter.getComments(video_id) 
+    for comment in comments:
+        print (comment.lower())
+        if search.lower() in comment.lower():
+                predicted_dict[comment] =  comment
+    print(predicted_dict)
+    return predicted_dict

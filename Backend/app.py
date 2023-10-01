@@ -46,6 +46,17 @@ async def controversyKeywords_prediction(video_id):
     }
     return obj
 
+@app.get('/controversyKeywordsSearch/')
+async def controversyKeywordsSearch_prediction(video_id,search):
+    print(search)
+    result_comments = controversyKeywords_controller.controversyKeywordsSearch(video_id,search)
+    print(result_comments)
+    predicted_json = json.dumps(result_comments)
+    obj = {
+        'predictions':predicted_json,
+    }
+    return obj
+
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host='localhost',port=5000)

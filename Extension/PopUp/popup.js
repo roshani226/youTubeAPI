@@ -24,9 +24,35 @@ document.addEventListener("DOMContentLoaded", function () {
   const videoIDDisplay = document.getElementById("videoIDDisplay");
   const requestList = document.getElementById("requestList");
   const controversialsLists = document.getElementById("getControversialTopic");
+  const controversialsTopicSearchBtn = document.getElementById("controversialsTopicSearchBtn");
   const controversialIDDisplay = document.getElementById(
     "controversialIDDisplay"
   );
+  const controversialSearchDisplay = document.getElementById("controversialSearchDisplay");
+
+  controversialsTopicSearchBtn.addEventListener("click", () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(
+        tabs[0].id,
+        { message: "getVideoID" },
+        function (response) {
+          if (response && response.videoID) {
+            if(document.getElementById("controversialsTopicSearch").value!=""){
+              chrome.tabs.sendMessage(tabs[0].id, {
+                search: document.getElementById("controversialsTopicSearch").value,
+                message: "controversialsTopicSearch",
+                videoID: response.videoID,
+              });
+            }else{
+              controversialSearchDisplay.textContent="type search bar";
+            }
+          } else {
+            controversialSearchDisplay.textContent = "Video ID not found.";
+          }
+        }
+      );
+    });
+  });
 
   getVideoIDButton.addEventListener("click", () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -93,6 +119,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     const data = request.data;
     console.log("Received user requests:", data);
     displayConveResults(data); // Display the received data in the popup
+  } else if (request.message === "displayControversialsComments") {
+    console.log("ava 11", request);
+    const data = request.data;
+    console.log("Received user requests:", data);
+    displayConveResultsComments(data); // Display the received data in the popup
   }
 });
 
@@ -160,6 +191,46 @@ function displayConveResults(data) {
     //   ul.appendChild(li);
     // });
     // requestList.appendChild(ul);
+  }
+}
+
+
+function displayConveResultsComments(data) {
+  console.log("data ava 11", data);
+  const results = data;
+  if (results.length === 0) {
+    controversialList.textContent = "No found in comments.";
+  } else {
+    const jsonObject = JSON.parse(results.predictions);
+    controversialList.textContent = "Comments";
+    const entries = Object.entries(jsonObject);
+    const ul = document.createElement("ul");
+
+    if (entries.length > 0) {
+      for (const [key, value] of entries) {
+        let row = `${key} : ${value}`;
+        const li = document.createElement("li");
+        li.textContent = row;
+        ul.appendChild(li);
+      }
+
+      const mathMarks = [80, 75, 90, 85, 70];
+      const scienceMarks = [70, 85, 80, 90, 95];
+
+      // Get the canvas element
+      const canvas = document.getElementById("marksChart");
+
+      const div = document.createElement("h2");
+      //div.textContent = "Overall Rating = " + results.overall_count + "%";
+
+      controversialList.appendChild(ul);
+      controversialList.appendChild(div);
+    } else {
+      const div = document.createElement("div");
+      div.textContent = "No comment found";
+      controversialList.appendChild(div);
+    }
+    
   }
 }
 

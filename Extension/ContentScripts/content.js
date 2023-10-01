@@ -11,6 +11,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  console.log(request.message)
   if (request.message === "getVideoID") {
     const videoID = getYouTubeVideoID();
     sendResponse({ videoID: videoID });
@@ -18,6 +19,20 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     const videoID = request.videoID;
     if (videoID) {
       fetchControversialsLists(videoID);
+    }
+  }
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  console.log(request.message)
+  if (request.message === "getVideoID") {
+    const videoID = getYouTubeVideoID();
+    sendResponse({ videoID: videoID });
+  } else if (request.message === "controversialsTopicSearch") {
+    const videoID = request.videoID;
+    const search = request.search;
+    if (videoID) {
+      fetchControversialsSearch(videoID,search);
     }
   }
 });
@@ -52,6 +67,26 @@ function fetchControversialsLists(videoID) {
       console.log("Received user requests ava:", data);
       chrome.runtime.sendMessage({
         message: "displayControversialsResults",
+        data: data,
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      chrome.runtime.sendMessage({
+        message: "displayError",
+        error: error.message,
+      });
+    });
+}
+
+function fetchControversialsSearch(videoID,search) {
+  console.log("Fetching user requests for video ID:", videoID);
+  fetch(`http://localhost:5000/controversyKeywordsSearch/?video_id=${videoID}&search=${search}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Received user requests ava:", data);
+      chrome.runtime.sendMessage({
+        message: "displayControversialsComments",
         data: data,
       });
     })

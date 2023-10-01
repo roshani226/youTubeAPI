@@ -3,13 +3,13 @@ from dotenv import load_dotenv
 from googleapiclient.discovery import build
 
 # Load environment variables from .env file
-load_dotenv()
+#load_dotenv()
 
 # Access the API key
 api_key = os.getenv("USER_REQUIREMENTS_YOUTUBE_API_KEY")
 
 def get_youtube():
-    DEVELOPER_KEY = api_key 
+    DEVELOPER_KEY = "AIzaSyDipU4ErjKY4jcs5I0x81AY9AYYaDYKQR0" 
     YOUTUBE_API_SERVICE_NAME = 'youtube'
     YOUTUBE_API_VERSION = 'v3'
 
