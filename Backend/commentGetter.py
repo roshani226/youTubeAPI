@@ -9,7 +9,7 @@ from googleapiclient.discovery import build
 api_key = os.getenv("USER_REQUIREMENTS_YOUTUBE_API_KEY")
 
 def get_youtube():
-    DEVELOPER_KEY = "AIzaSyDipU4ErjKY4jcs5I0x81AY9AYYaDYKQR0" 
+    DEVELOPER_KEY = api_key 
     YOUTUBE_API_SERVICE_NAME = 'youtube'
     YOUTUBE_API_VERSION = 'v3'
 
